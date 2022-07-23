@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block title %} HOMEPAGE {% endblock title %}
+{% block title %} {{ detail.title }} {% endblock title %}
 {% load static %}
 
 {% block body %}
 
 <article>
-    <a href="#">{{ detail.title }}</a>
+    <a href="{% url 'blog_detail' pk=detail.pk %}">{{ detail.title }}</a>
     <img src="{{ detail.post_image.url }}"/>
     <ul>
         <li>
