@@ -45,7 +45,7 @@ else:
     ALLOWED_HOSTS = [
         '0.0.0.0',
         'localhost',
-        'eleventhhourcollection.herokuapp.com',  # your herokuapp url
+        'vbellotech.herokuapp.com',  # your herokuapp url
         '127.0.0.1'
     ]
 
