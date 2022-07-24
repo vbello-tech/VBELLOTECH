@@ -1,3 +1,3 @@
-web: gunicorn vbello.wsgi:application --log-file - --log-level debug
+web: gunicorn vbello.wsgi
 heroku ps:scale web=1
 python manage.py collectstatic --noinput
