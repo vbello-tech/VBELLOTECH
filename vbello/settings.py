@@ -15,6 +15,7 @@ from pathlib import Path
 import dj_database_url
 from decouple import config
 import django_heroku
+import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,6 +57,16 @@ else:
         'default': dj_database_url.config(
             default=config('DATABASE_URL')
         )
+    }
+
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': 'dhzn9oqey',
+        'API_KEY': '894294618768234',
+        'API_SECRET': '8fqL8OfZKqSJChXcObtsRWqefPQ'
     }
 
     SECURE_SSL_REDIRECT = True
