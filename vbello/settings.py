@@ -42,7 +42,9 @@ ALLOWED_HOSTS = [
     '0.0.0.0',
     'localhost',
     'vbellotech.vercel.app',
-    '127.0.0.1'
+    '127.0.0.1',
+    'vbellotech-git-main-vbello-tech.vercel.app/',
+    'vbellotech-ooiatmpix-vbello-tech.vercel.app/',
 ]
 
 
