@@ -41,8 +41,7 @@ DATABASES = {
 ALLOWED_HOSTS = [
     '0.0.0.0',
     'localhost',
-    'vbellotech.herokuapp.com',  # your herokuapp url
-    'vbellotech.fly.dev',
+    'vbellotech.vercel.app',
     '127.0.0.1'
 ]
 
