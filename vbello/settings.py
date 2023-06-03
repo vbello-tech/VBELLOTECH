@@ -43,8 +43,6 @@ ALLOWED_HOSTS = [
     'localhost',
     'vbellotech.vercel.app',
     '127.0.0.1',
-    'vbellotech-git-main-vbello-tech.vercel.app/',
-    'vbellotech-ooiatmpix-vbello-tech.vercel.app/',
 ]
 
 
@@ -148,7 +146,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
