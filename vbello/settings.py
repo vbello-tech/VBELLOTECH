@@ -43,6 +43,7 @@ ALLOWED_HOSTS = [
     'localhost',
     'vbellotech.vercel.app',
     '127.0.0.1',
+    'vbellotech-jll02br2k-vbello-tech.vercel.app/',
 ]
 
 
