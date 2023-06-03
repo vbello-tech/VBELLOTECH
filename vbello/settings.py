@@ -14,7 +14,6 @@ import os
 from pathlib import Path
 import dj_database_url
 from decouple import config
-import django_heroku
 import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,53 +28,42 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
-if DEBUG == True:
-    ALLOWED_HOSTS = []
 
+# Database
+# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-    # Database
-    # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    ALLOWED_HOSTS = [
-        '0.0.0.0',
-        'localhost',
-        'vbellotech.herokuapp.com',  # your herokuapp url
-        '127.0.0.1'
-    ]
+}
+ALLOWED_HOSTS = [
+    '0.0.0.0',
+    'localhost',
+    'vbellotech.herokuapp.com',  # your herokuapp url
+    'vbellotech.fly.dev',
+    '127.0.0.1'
+]
 
-    # Database
-    # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=config('DATABASE_URL')
-        )
-    }
+"""SECURE_SSL_REDIRECT = True
 
-    SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
 
-    SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-    CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True"""
 
-    SECURE_BROWSER_XSS_FILTER = True
+#STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-CLOUDINARY_STORAGE = {
+"""CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dhzn9oqey',
     'API_KEY': '894294618768234',
     'API_SECRET': '8fqL8OfZKqSJChXcObtsRWqefPQ'
-}
+}"""
 
     
 
@@ -158,9 +146,9 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
-
-STATIC_URL = 'static/'
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -177,7 +165,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
-
-django_heroku.settings(locals())
