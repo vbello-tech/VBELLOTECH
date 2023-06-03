@@ -54,15 +54,15 @@ CSRF_COOKIE_SECURE = True
 
 SECURE_BROWSER_XSS_FILTER = True"""
 
-#STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-"""CLOUDINARY_STORAGE = {
+CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dhzn9oqey',
     'API_KEY': '894294618768234',
     'API_SECRET': '8fqL8OfZKqSJChXcObtsRWqefPQ'
-}"""
+}
 
     
 
