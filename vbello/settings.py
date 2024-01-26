@@ -32,18 +32,23 @@ DEBUG = config('DEBUG', cast=bool)
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+#DATABASES = {
+#        'ENGINE': 'django.db.backends.sqlite3',
+ #      'NAME': BASE_DIR / 'db.sqlite3',
+  #  }
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default':  dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
     }
-}
+
 ALLOWED_HOSTS = [
     '0.0.0.0',
     'localhost',
-    'vbellotech.vercel.app',
     '127.0.0.1',
-    'vbellotech-jll02br2k-vbello-tech.vercel.app',
+    'vbello.fly.dev',
 ]
 
 

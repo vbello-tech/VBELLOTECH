@@ -1,3 +1,2 @@
-web: gunicorn vbello.wsgi
-heroku ps:scale web=1
-python manage.py collectstatic --noinput
+web: gunicorn vbello.wsgi && python manage.py collectstatic --noinput
+
