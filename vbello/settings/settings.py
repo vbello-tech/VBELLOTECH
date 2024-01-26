@@ -4,7 +4,6 @@ Django settings for vbello project.
 
 import os
 from pathlib import Path
-import dj_database_url
 from decouple import config
 import cloudinary_storage as _
 
@@ -20,45 +19,12 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-# DATABASES = {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#      'NAME': BASE_DIR / 'db.sqlite3',
-#  }
-# }
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
-
 ALLOWED_HOSTS = [
     '0.0.0.0',
     'localhost',
     '127.0.0.1',
     'vbellotech.pythonanywhere.com',
 ]
-
-"""SECURE_SSL_REDIRECT = True
-
-SESSION_COOKIE_SECURE = True
-
-CSRF_COOKIE_SECURE = True
-
-SECURE_BROWSER_XSS_FILTER = True"""
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dhzn9oqey',
-    'API_KEY': '894294618768234',
-    'API_SECRET': '8fqL8OfZKqSJChXcObtsRWqefPQ'
-}
 
 # Application definition
 
