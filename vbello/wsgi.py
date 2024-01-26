@@ -11,9 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vbello.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vbello.settingsproduction')
 
 application = get_wsgi_application()
 
-#required for hosting on vercel
-app = application
+
