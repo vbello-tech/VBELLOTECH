@@ -2,12 +2,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
 from django.core.mail import send_mail
-from django.http import HttpResponseRedirect
 from django.urls import reverse
 # Create your views here.
 
 def home(request):
-    return render(request, 'myapp/home.html')
+    projects = Project.objects.order_by('-published_date')
+    context = {
+        'projects': projects
+    }
+    return render(request, 'myapp/home.html', context)
 
 
 #defining function to display all the blog post.
