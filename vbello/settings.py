@@ -3,11 +3,9 @@ Django settings for vbello project.
 """
 
 import os
-import dj_database_url
 
 from pathlib import Path
 from decouple import config
-import cloudinary_storage as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,30 +26,12 @@ ALLOWED_HOSTS = [
     'vbellotech.pythonanywhere.com',
 ]
 
-if not DEBUG:
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=config('DATABASE_URL')
-        )
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
-
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-    CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': config('CLOUD_NAME'),
-        'API_KEY': config('API_KEY'),
-        'API_SECRET': config('API_SECRET'),
-    }
-else:
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 INSTALLED_APPS = [
     'myapp',
