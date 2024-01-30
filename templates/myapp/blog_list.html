@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} BLOGS {% endblock title %}
+{% load static %}
+
+{% block body %}
+
+{% for post in all_post %}
+
+<article>
+    <a href="{% url 'blog_detail' pk=post.pk %}">
+        <h2>{{ post.title }}</h2>
+        <img src="{{ post.post_image.url }}" />
+    <p>
+        ango is now an open-source project with contributors across the planet, the original World Online developers still provide central guidance for the framework’s growth, and World Online contributes other important aspects such as employee time, marketing materials and hosting/bandwidth for the framework’s Web site (http://www.djangoproject.com/).
+
+    </p>
+</a>
+</article>
+
+    {% endfor %}
+
+{% endblock body %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} PROJECTS {% endblock title %}
+{% load static %}
+
+{% block body %}
+<br>
+{% for project in projects %}
+
+<article>
+    <h2>{{ project.project_name }}</h2>
+    <br><br>
+    <img src="{{ project.project_image.url }}" />
+       
+        <p>
+            {{ project.project_description }}
+            <div id="space">
+                <a href="{{ project.project_url }}" class="pb">DEMO</a>
+                <a href="{{ project.github_url }}" class="pb">GITHUB</a>
+                </div>
+        </p>
+        
+</article>
+
+
+{% endfor %}
+
+{% endblock body %} 

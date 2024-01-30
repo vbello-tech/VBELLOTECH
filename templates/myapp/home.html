@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VBELLOTECH</title>
+    <link href="{% static 'styling/bootstrap.min.css' %}" rel="stylesheet">
+    <style>
+        .center-div{
+            margin: 5vh 10%;
+            border: 2px solid #faf9f8;
+            padding: 2%;
+            border-radius: 15px;
+        }
+        .intro {
+            height: 30vh;
+            padding: 5px;
+        }
+        .intro img {
+            height: 100%;
+            width: 80%;
+            max-height: 25vh;
+        }
+        .intro h3 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: 500;
+        }
+        .intro h5 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .stack {
+            margin-top: 10vh;
+            padding: 2%;
+        }
+
+        .stack img {
+            height: auto;
+            width: 70%;
+        }
+
+        .topic {
+            margin: 0;
+            font-size: 40px;
+            font-weight: 600;
+        }
+
+        article {
+            display: flex;
+            margin-bottom: 10vh;
+            height: auto;
+            align-items: space-between;
+        }
+        article .up{
+            width: 50%;
+            margin-right: 5px;
+            padding: 4%;
+        }
+        article .up p{
+            text-decoration: none;
+            color: black;
+            margin-top: 5px;
+        }
+
+        article img{
+            max-height: 50vh;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        article .down{
+            font-size: 20px;
+            margin-left: 5px;
+            padding: 35px 5px;
+        }
+        article .down ul{
+            display: flex;
+            align-items: left;
+            list-style: none;
+            margin-left: 0;
+        }
+        article .down ul span{
+            font-weight: 500;
+        }
+        article .down ul li{
+            margin-right: 22px;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        #space {
+            height: 10vh;
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2px 30px 2px 30px;
+        }
+
+        #space a{
+            color: black;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .intro h3 {
+            font-size: 20px;
+            margin-top: 6px;
+            }
+            .intro h5 {
+                margin: 0;
+                font-size: 15px;
+            }
+            .center-div{
+                margin: 5vh 2%;
+            }
+            .stack img {
+                height: auto;
+                width: 65%;
+            }
+            .topic {
+                font-size: 25px;
+                margin:5vh 0;
+            }
+            article {
+                display: inline-block;
+            }
+            article .down{
+                font-size: 18px;
+                margin-left: 0;
+                margin-top: 6px;
+                padding: 2%;
+            }
+            article .down ul li{
+                margin-right: 8px;
+            }
+            article .up{
+            width: 75%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="center-div">
+
+        <div class="intro">
+            <div class="row">
+                <div class="col-lg-6 order-2 order-lg-2 d-flex flex-column justify-content-center">
+                  <h3>BELLO VICTOR AYOMIDE</h3>
+                  <h5>Backend Developer proficient in PYTHON and DJANGO</h5>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-1 hero-img">
+                  <img src="{% static 'images/vbello.jpg' %}" class="object-fit-contain border rounded" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="about">
+
+        </div>
+        <div class="stack">
+            <h3 class="topic">MY STACK</h3>
+            <br>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <img src="{% static 'images/python.png' %}"  alt="">
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="{% static 'images/django.png' %}"  alt="">
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="{% static 'images/html.png' %}"  alt="">
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="{% static 'images/css.png' %}"  alt="">
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="{% static 'images/bootstrap.png' %}"  alt="">
+                </div>
+            </div>
+        </div>
+        <div class="project">
+            <h3 class="topic">MY PROJECTS</h3>
+            {% for item in projects %}
+            <article>
+                <div class="up">
+                    <h4>{{ item.project_name }}</h4>
+                    <br><br>
+                    <p><img src="blog.png" /></p>
+                </div>
+                <div class="down">
+                <p>
+                    {{ item.project_description }}
+                </p>
+
+                   <ul>
+                    <span>STACK:</span>
+                        <li>Python</li>
+                        <li>Django</li>
+                        <li>PostgreSQL</li>
+                    </ul>
+                    <div id="space">
+                        {% if project.project_url %}
+                        <a href="{{ project.project_url }}" class="pb">DEMO</a>
+                        {% endif %}
+                        <a href="{{ project.github_url }}" class="pb">GITHUB</a>
+                    </div>
+                </p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        <div class="blog">
+
+        </div>
+        <div class="links">
+
+        </div>
+    </div>
+</div>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
