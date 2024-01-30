@@ -9,6 +9,7 @@ myapp/migrations/__pycache__/
 .idea/
 staticfiles/
 .DS_Store
+db.sqlite3
 templates/__pycache__/
 templates/myapp/__pycache__/
 media/
