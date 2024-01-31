@@ -60,25 +60,26 @@
             margin-right: 5px;
             padding: 4%;
         }
-        article .up p{
-            text-decoration: none;
-            color: black;
-            margin-top: 5px;
-        }
 
         article img{
             max-height: 50vh;
             max-width: 100%;
             width: 100%;
+            object-fit: contain;
+            object-position: center;
         }
 
         article .down{
             font-size: 20px;
             margin-left: 5px;
             padding: 35px 5px;
+            word-wrap: break-word;
+        }
+
+        article .down p{
+            margin-top: 2px;
         }
         article .down ul{
-            display: flex;
             align-items: left;
             list-style: none;
             margin-left: 0;
@@ -92,6 +93,7 @@
             border-radius: 10px;
             font-size: 18px;
             font-weight: 500;
+            display: inline-block;
         }
 
         #space {
@@ -207,26 +209,25 @@
             {% for item in projects %}
             <article>
                 <div class="up">
-                    <h4>{{ item.project_name }}</h4>
-                    <br><br>
-                    <p><img src="blog.png" /></p>
+                    <img src="{{ item.project_image.url }}" />
                 </div>
                 <div class="down">
+                    <h4>{{ item.project_name }}</h4>
                 <p>
                     {{ item.project_description }}
                 </p>
 
                    <ul>
                     <span>STACK:</span>
-                        <li>Python</li>
-                        <li>Django</li>
-                        <li>PostgreSQL</li>
+                       {% for tech in item.stack.all %}
+                        <li>{{ tech }}</li>
+                       {% endfor %}
                     </ul>
                     <div id="space">
                         {% if project.project_url %}
                         <a href="{{ project.project_url }}" class="pb">DEMO</a>
                         {% endif %}
-                        <a href="{{ project.github_url }}" class="pb">GITHUB</a>
+                        <a href="{{ project.github_url }}" class="pb">CODE</a>
                     </div>
                 </p>
                 </div>

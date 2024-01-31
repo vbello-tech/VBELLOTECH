@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Blog)
 admin.site.register(Project)
 admin.site.register(Comments)
+admin.site.register(Tech)

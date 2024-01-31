@@ -1,6 +1,13 @@
 from django.db import models
 from django.utils import timezone
-# Create your models here.
+
+
+class Tech(models.Model):
+    name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name
+
 
 class Blog(models.Model):
     author = models.ForeignKey('auth.user', on_delete=models.CASCADE)
@@ -9,9 +16,9 @@ class Blog(models.Model):
     post_image = models.ImageField(blank=False, upload_to="Blog/")
     publish_date = models.DateTimeField(default=timezone.now)
 
-
     def __str__(self):
         return self.title
+
 
 class Project(models.Model):
     author = models.ForeignKey('auth.user', on_delete=models.CASCADE)
@@ -21,7 +28,7 @@ class Project(models.Model):
     project_url = models.URLField(blank=True, null=True)
     github_url = models.URLField()
     published_date = models.DateTimeField(default=timezone.now)
-
+    stack = models.ManyToManyField("Tech", related_name="techused", blank=True)
 
     def __str__(self):
         return self.project_name
@@ -35,6 +42,3 @@ class Comments(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.post.title, self.name)
-
-
-
