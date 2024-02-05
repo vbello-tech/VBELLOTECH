@@ -3,6 +3,8 @@ from .models import *
 from .forms import *
 from django.core.mail import send_mail
 from django.urls import reverse
+
+
 # Create your views here.
 
 def home(request):
@@ -10,18 +12,35 @@ def home(request):
     context = {
         'projects': projects
     }
-    return render(request, 'myapp/home.html', context)
+    return render(request, 'home.html', context)
 
 
-#defining function to display all the blog post.
+def add_project(request):
+    if request.method == "POST":
+        form = ProjectForm(request.POST)
+        if form.is_valid:
+            portfolio = form.save(commit=False)
+            portfolio.save()
+            return redirect('/')
+        form = ProjectForm()
+    else:
+        form = ProjectForm()
+    context = {
+        'form': form
+    }
+    return render(request, "add_project.html", context)
+
+
+# defining function to display all the blog post.
 def blog_list(request):
     all_post = Blog.objects.order_by("-publish_date")
 
     context = {
-        'all_post':all_post
+        'all_post': all_post
     }
 
     return render(request, "myapp/blog_list.html", context)
+
 
 def blog_detail(request, pk):
     detail = Blog.objects.get(pk=pk)
@@ -37,11 +56,12 @@ def blog_detail(request, pk):
         form = CommentForm()
 
     context = {
-        'detail':detail,
-        'form':form
+        'detail': detail,
+        'form': form
     }
 
     return render(request, "myapp/blog_detail.html", context)
+
 
 def projects(request):
     projects = Project.objects.order_by('-published_date')
@@ -50,12 +70,13 @@ def projects(request):
     }
     return render(request, 'myapp/portfolio.html', context)
 
+
 def contact(request):
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
         message = request.POST['message']
-        #print(name, email, message)
+        # print(name, email, message)
         send_mail(
             name,
             message,
@@ -68,6 +89,7 @@ def contact(request):
     else:
         return redirect('home')
 
+
 def handler404(request, exception):
     context = {"<h1>PAGE NOT FOUND!! ARE YOU SURE YOU ARE NAVIGATING TO THE RIGHT PAGE?</h1>"}
     response = render(request, "404.html", context)
@@ -76,8 +98,7 @@ def handler404(request, exception):
 
 
 def handler500(request):
-    context =  {"<h1>OOPS !!! <br> SEVER ERROR!!! <br> </h1>"}
+    context = {"<h1>OOPS !!! <br> SEVER ERROR!!! <br> </h1>"}
     response = render(request, "500.html", context)
     response.status_code = 500
     return response
-

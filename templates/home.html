@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container">
+    <div class="center-div">
+
+        <div class="row">
+            <div class="intro d-flex justify-content-left">
+                <img src="{% static 'images/vbello.jpg' %}" class="object-fit-contain" alt="">
+                <div class="d-flex flex-column justify-content-center">
+                  <h3>BELLO VICTOR AYOMIDE</h3>
+                  <h5>Backend Developer proficient in PYTHON and DJANGO</h5>
+                </div>
+            </div>
+        </div>
+        <div class="about">
+            <h3 class="topic">ABOUT ME</h3>
+            <p>
+                As a backend developer, I am interested in building features and functionality on and for the web/internet that users can use to solve
+                various problems. My interest in the functionality of things built on the web has increased my interest in startups
+                and tech companies over the years. You can find me stalking new product release on product hunt and twitter.
+                I volunteer as a Web manager at PIONEER MEDICAL INITIATIVE, where I try my best as a tech oriented person to improve
+                public health in Nigeria. You can visit our website <a href="https://www.pioneermed.org.ng/">Here</a>
+            </p>
+        </div>
+        <div class="stack">
+            <h3 class="topic">MY STACK</h3>
+            <br>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <img src="{% static 'images/python.png' %}"  alt="">
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="{% static 'images/html.png' %}"  alt="">
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="{% static 'images/css.png' %}"  alt="">
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="{% static 'images/bootstrap.png' %}"  alt="">
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="{% static 'images/django.png' %}"  alt="">
+                </div>
+            </div>
+        </div>
+        <br><br>
+
+        {% if projects %}
+        <div class="project">
+            <h3 class="topic">MY PROJECTS</h3>
+            {% for item in projects %}
+            <article>
+                <div class="up">
+                    <img src="{{ item.project_image.url }}" />
+                </div>
+                <div class="down">
+                    <h4>{{ item.project_name }}</h4>
+                <p>
+                    {{ item.project_description }}
+                </p>
+
+                   <ul>
+                    <span>STACK:</span>
+                       {% for tech in item.stack.all %}
+                        <li>{{ tech }}</li>
+                       {% endfor %}
+                    </ul>
+                    <div id="space">
+                        {% if project.project_url %}
+                        <a href="{{ project.project_url }}" class="pb">DEMO</a>
+                        {% endif %}
+                        <a href="{{ project.github_url }}" class="pb">CODE</a>
+                    </div>
+                </p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+        <div class="blog">
+
+        </div>
+        <div class="links">
+
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

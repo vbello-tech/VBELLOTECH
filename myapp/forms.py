@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comments
+from .models import Comments, Project
 
 
 class CommentForm(forms.ModelForm):
@@ -27,4 +27,9 @@ class CommentForm(forms.ModelForm):
 
         }
 
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        models = Project
+        fields = '__all__'
 
